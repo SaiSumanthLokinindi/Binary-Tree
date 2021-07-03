@@ -1,5 +1,3 @@
-const Node = require('./Node');
-
 class BinaryTree {
 
     constructor() {
@@ -8,7 +6,9 @@ class BinaryTree {
 
     printLevelOrder(root) {
         const height = this.height(root);
-        for (let i = 1; i <= height; i++) this.printCurrentLevel(root, i)
+        console.log("\n--------------\n");
+        for (let i = 1; i <= height; i++) this.printCurrentLevel(root, i);
+        console.log("\n--------------\n");
     }
 
     height(root) {
@@ -34,12 +34,6 @@ class BinaryTree {
     }
 }
 
-const tree = new BinaryTree();
-tree.root = new Node(1);
-tree.root.left = new Node(2);
-tree.root.right = new Node(3);
-tree.root.left.left = new Node(4);
-tree.root.left.right = new Node(5);
 
-tree.printLevelOrder(tree.root);
+module.exports = BinaryTree;
 
