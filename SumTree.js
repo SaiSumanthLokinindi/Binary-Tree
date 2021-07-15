@@ -19,20 +19,44 @@ class BinaryTree {
         }
         return [root.data, x];
     }
+
+    checkSumTree(root) {
+        if (!root) return [true, 0];
+        let left = this.checkSumTree(root.left);
+        let right = this.checkSumTree(root.right);
+        console.log(left, right, root.data);
+        if (!left[0] || !right[0]) return [false, root.data]
+        if (left[1] === 0 && right[1] === 0) {
+            return [true, root.data];
+        }
+        else if (left[1] + right[1] === root.data) {
+            return [true, root.data + left[1] + right[1]]
+        }
+        else return [false, root.data];
+    }
 }
 
 const tree = new BinaryTree();
 
-tree.root = new Node(10);
-tree.root.left = new Node(-2);
-tree.root.right = new Node(6);
-tree.root.left.left = new Node(8);
-tree.root.left.right = new Node(-4);
-tree.root.right.left = new Node(7);
-tree.root.right.right = new Node(5);
+// tree.root = new Node(10);
+// tree.root.left = new Node(-2);
+// tree.root.right = new Node(6);
+// tree.root.left.left = new Node(8);
+// tree.root.left.right = new Node(-4);
+// tree.root.right.left = new Node(7);
+// tree.root.right.right = new Node(5);
 
-tree.convertToSumTree(tree.root);
+tree.root = new Node(26);
+tree.root.left = new Node(10);
+tree.root.right = new Node(3);
+tree.root.left.left = new Node(4);
+tree.root.left.right = new Node(6);
+tree.root.right.right = new Node(3);
 
-const LL = new levelOrderTraversal();
+// tree.convertToSumTree(tree.root);
 
-LL.printLevelOrder(tree.root);
+// const LL = new levelOrderTraversal();
+
+// LL.printLevelOrder(tree.root);
+
+console.log(tree.checkSumTree(tree.root));
